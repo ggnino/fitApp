@@ -34,7 +34,7 @@ function UserPage() {
 	useEffect(() => {
 		if (pageWidth === 768) {
 			axios
-				.get("http://localhost:5000/exercise/" + user)
+				.get("/exercise/" + user)
 				.then((res) => {
 					setStyle({
 						del: { display: "none" },
@@ -48,7 +48,7 @@ function UserPage() {
 				.catch((err) => console.log(err));
 		} else if (pageWidth <= 490 && pageWidth >= 390) {
 			axios
-				.get("http://localhost:5000/exercise/" + user)
+				.get("/exercise/" + user)
 				.then((res) => {
 					setStyle({
 						del: { display: "none" },
@@ -62,7 +62,7 @@ function UserPage() {
 				.catch((err) => console.log(err));
 		} else if (pageWidth <= 380) {
 			axios
-				.get("http://localhost:5000/exercise/" + user)
+				.get("/exercise/" + user)
 				.then((res) => {
 					setStyle({
 						del: { display: "none" },
@@ -76,7 +76,7 @@ function UserPage() {
 				.catch((err) => console.log(err));
 		} else {
 			axios
-				.get("http://localhost:5000/exercise/" + user)
+				.get("/exercise/" + user)
 				.then((res) => {
 					console.log(res.data);
 					setStyle({
@@ -153,7 +153,7 @@ function UserPage() {
 	const saveHandler = (e) => {
 		e.preventDefault();
 		axios
-			.post("http://localhost:5000/exercise", {
+			.post("/exercise", {
 				username: exercise.name,
 				description: exercise.description,
 				duration: exercise.duration,
@@ -190,7 +190,7 @@ function UserPage() {
 		console.log(index);
 		let newData = userData.filter((value, i) => i !== index);
 		axios
-			.delete("http://localhost:5000/exercise/" + id)
+			.delete("/exercise/" + id)
 			.then((res) => {
 				console.log("My");
 				setUserData([...newData]);

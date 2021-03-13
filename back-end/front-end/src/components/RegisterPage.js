@@ -61,7 +61,7 @@ function RegisterPage() {
 			});
 		} else {
 			axios
-				.post("http://localhost:5000/register", input)
+				.post("/register", input)
 				.then((res) => {
 					if (res.data === "User Already Exists") {
 						setStyle({

@@ -71,7 +71,7 @@ function LoginPage() {
 			});
 		} else {
 			axios
-				.post("http://localhost:5000/login", input)
+				.post("/login", input)
 				.then((res) => {
 					console.log(res);
 					if (res.data === "Successfully Authenticated!") {
