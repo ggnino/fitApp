@@ -1,0 +1,401 @@
+/* Font */
+@import url("https://fonts.googleapis.com/css2?family=Redressed&display=swap");
+
+/* Global */
+* {
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Redressed", cursive;
+}
+
+/* Navbar */
+.navbar {
+	position: fixed;
+	background-color: black;
+	width: 100%;
+	top: 0;
+	overflow: hidden;
+	padding: 10px;
+	z-index: 1000;
+	font-size: 1.2rem;
+}
+.navBrand {
+	float: left;
+	color: white;
+	text-align: center;
+	display: block;
+	padding: 10px 10px;
+}
+.navBrand a {
+	color: white;
+	text-decoration: none;
+}
+.nav-item {
+	float: right;
+	text-decoration: none;
+	color: white;
+	display: block;
+	padding: 10px 10px;
+	text-align: center;
+}
+.navbar a:hover {
+	color: #1098f7;
+}
+
+/* Form */
+form {
+	position: relative;
+	width: 80vw;
+}
+
+label {
+	display: block;
+	margin: 10px;
+	position: relative;
+	font-size: 1.2rem;
+	left: 10vw;
+}
+input {
+	display: block;
+	position: relative;
+	width: 100%;
+	margin: 10px;
+	padding: 5px;
+	left: 10vw;
+}
+input:focus {
+	border: 2px solid #1098f7;
+	box-shadow: 0px 2px 25px #1098f7;
+}
+
+input:invalid {
+	border: 2px solid red;
+	box-shadow: 0px 2px 25px red;
+}
+
+/* Buttons */
+#regBtn:hover {
+	color: #1098f7;
+	box-shadow: 0px 2px 25px #1098f7;
+	border: 2px solid #1098f7;
+	background-color: black;
+}
+#regBtn {
+	cursor: pointer;
+	position: absolute;
+	margin: 10px;
+	padding: 10px;
+	left: 45vw;
+	text-align: center;
+	border-radius: 5px;
+	border: 2px solid white;
+	color: white;
+	background-color: transparent;
+	font-weight: bold;
+	font-size: 1.2rem;
+}
+.btn {
+	position: absolute;
+	display: block;
+	padding: 20px;
+	font-size: 1.2rem;
+	left: 48vw;
+	top: 35vh;
+	text-decoration: none;
+	outline: none;
+	border-radius: 5px;
+	color: white;
+	font-weight: bold;
+	background-color: black;
+	opacity: 0.5;
+}
+.btn:hover {
+	opacity: 1;
+	color: #1098f7;
+	border: 2px solid #1098f7;
+	box-shadow: 0px 2px 25px #1098f7;
+}
+
+/* Main Content */
+.main {
+	position: relative;
+	margin-top: 62px;
+	padding-top: 20px;
+	background-color: #b89e97;
+	height: calc(100vh - 62px);
+	color: white;
+}
+
+.main h1 {
+	font-size: 6rem;
+	text-align: center;
+	padding: 10px;
+}
+
+#greeting {
+	position: relative;
+	text-align: center;
+	top: 15vh;
+	font-size: 1.2rem;
+}
+/* Userpage Table */
+table {
+	position: relative;
+	left: 35vw;
+	font-size: 1.2rem;
+}
+img {
+	position: absolute;
+	bottom: 10px;
+	margin: 5px;
+	padding-left: 1px;
+}
+
+table,
+th,
+td {
+	text-align: center;
+	border: 2px solid black;
+	border-collapse: collapse;
+	background-clip: padding-box;
+}
+td {
+	padding: 5px;
+}
+th {
+	background-color: dodgerblue;
+	margin: 15px;
+	position: relative;
+	padding: 12px 50px;
+	font-size: 2rem;
+}
+#delBtn {
+	font-size: 1.2rem;
+	padding: 5px;
+	color: white;
+	background-color: red;
+	border-radius: 5px;
+	border: 2px solid red;
+	cursor: pointer;
+}
+#delBtn:hover {
+	font-weight: bold;
+	box-shadow: 0px 2px 5px red;
+}
+#add {
+	position: absolute;
+	bottom: 95vh;
+	left: 80vw;
+	text-align: center;
+	border: red;
+}
+#add button:hover {
+	color: #1098f7;
+}
+#add button:focus {
+	outline: none;
+}
+
+#add button {
+	display: block;
+	float: left;
+	color: white;
+	cursor: pointer;
+	border: 1px solid black;
+	background-color: transparent;
+	font-size: 1.2rem;
+	margin: 0;
+	padding: 5px;
+}
+
+/* Modal */
+#modal {
+	position: fixed;
+	z-index: 1;
+	padding-top: 50vh;
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgba(0, 0, 0); /* Black w/ opacity */
+}
+#modal-content {
+	margin: -90px auto;
+	padding: 20px;
+	color: white;
+	font-weight: bold;
+	border: 2px solid #1098f7;
+	border-radius: 5px;
+	box-shadow: 0px -10px 120px #1098f7;
+	width: 50%;
+	height: 80%;
+	background-color: black;
+}
+#modal-content input[type="text"] {
+	margin: 0.5vw 4vw;
+}
+#modal-content input[type="number"] {
+	width: 10%;
+	margin: 0.4vw;
+}
+#modal-content input[type="date"] {
+	text-align: center;
+	width: 30%;
+	padding: 0;
+	margin-left: 6vw;
+}
+#modal-content input,
+#modal-content label {
+	/*  */
+	width: 50%;
+	display: inline;
+}
+#modal-content button[type="button"]:hover {
+	box-shadow: 0px 2px 15px red;
+}
+#modal-content button[type="button"] {
+	margin: 0;
+	margin: 2px;
+	background-color: red;
+	border: 2px solid red;
+}
+#modal-content button[type="submit"] {
+	background-color: green;
+	border: 2px solid green;
+}
+#modal-content button[type="submit"]:hover {
+	box-shadow: 0px 2px 15px green;
+}
+#modal-content button {
+	margin-left: 18vw;
+	margin-top: 2vh;
+	padding: 10px;
+	font-size: 1.2rem;
+	border-radius: 5px;
+	color: white;
+	opacity: 0.5;
+	cursor: pointer;
+}
+
+#modal-content button:hover {
+	opacity: 1;
+	font-weight: bold;
+	box-shadow: 0px 2px 25px #1098f7;
+}
+
+/* Tablet View */
+@media screen and (max-width: 768px) {
+	.btn {
+		top: 30vh;
+		left: 45vw;
+	}
+	#regBtn {
+		left: 43vw;
+	}
+	.main h1 {
+		font-size: 3rem;
+	}
+	#modal {
+		padding-top: 30vh;
+	}
+	img {
+		display: none;
+	}
+	#add {
+		bottom: 95.2vh;
+		left: 75vw;
+	}
+	th {
+		padding: 12px 12px;
+		padding-left: 13px;
+		margin: 0;
+		text-align: left;
+	}
+	img {
+		padding: 0;
+	}
+	#date {
+		text-align: center;
+	}
+
+	#modal-content {
+		padding: 20px 0;
+		height: 30%;
+		font-size: 1rem;
+	}
+	#modal-content label {
+		position: relative;
+		left: 2vw;
+	}
+
+	#modal-content input[type="number"] {
+		position: relative;
+		left: 2vw;
+		width: 50%;
+		text-align: center;
+		margin-top: 10px;
+	}
+
+	#modal-content input[type="text"] {
+		position: relative;
+		left: 8.5vw;
+		margin: 0;
+	}
+	#modal-content input[type="date"] {
+		width: 50%;
+		padding: 0;
+		position: relative;
+		left: 5.5vw;
+	}
+
+	#modal-content button {
+		margin-left: 20vw;
+		margin-top: 0;
+	}
+}
+
+/* Cellphone View */
+@media screen and (max-width: 480px) {
+	.btn {
+		left: 39vw;
+	}
+	#regBtn {
+		left: 40vw;
+	}
+	#add {
+		bottom: 96vh;
+		padding: 0;
+	}
+	#modal-content {
+		width: 70%;
+		height: 40%;
+	}
+	#modal-content input[type="text"] {
+		left: 13.5vw;
+	}
+	#modal-content input[type="date"] {
+		left: 13.5vw;
+	}
+	table {
+		left: 15vw;
+	}
+	th {
+		font-size: 1.2rem;
+	}
+}
+@media screen and (max-width: 380px) {
+	#modal-content {
+		width: 80%;
+		height: 45%;
+	}
+	#modal-content input[type="text"] {
+		left: 15vw;
+	}
+	#modal-content input[type="date"] {
+		left: 16vw;
+	}
+	#add button {
+		font-size: 1rem;
+	}
+}
