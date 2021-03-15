@@ -234,40 +234,18 @@ function UserPage() {
 					</thead>
 
 					<tbody>
-						{userData.length < 1 ? (
-							<tr>
-								<td>{"Add exercise info"}</td>
-								<td>{"50"}</td>
-								<td>
-									{exercise.date
-										? dateFormatter(exercise.date.substring(0, 10))
-										: "04/04/2021"}
-								</td>
+						{userData.map((ex, i) => (
+							<tr key={ex.description + i}>
+								<td>{ex.description}</td>
+								<td>{ex.duration}</td>
+								<td>{dateFormatter(ex.date.substring(0, 10))}</td>
 								<td style={style.del}>
-									<button
-										onClick={() =>
-											setExercise({ duration: "", description: "", date: "" })
-										}
-										id="delBtn"
-									>
+									<button onClick={() => onDelete(ex._id, i)} id="delBtn">
 										Delete
 									</button>
 								</td>
 							</tr>
-						) : (
-							userData.map((ex, i) => (
-								<tr key={ex.description + i}>
-									<td>{ex.description}</td>
-									<td>{ex.duration}</td>
-									<td>{dateFormatter(ex.date.substring(0, 10))}</td>
-									<td style={style.del}>
-										<button onClick={() => onDelete(ex._id, i)} id="delBtn">
-											Delete
-										</button>
-									</td>
-								</tr>
-							))
-						)}
+						))}
 					</tbody>
 				</table>
 			</div>
