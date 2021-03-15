@@ -10,7 +10,6 @@ import img4 from "../imgs/trash.png";
 function UserPage() {
 	// Variables
 	const user = useHistory().location.state;
-	const pageWidth = window.innerWidth;
 
 	// useState hooks for setting user data
 	const [userData, setUserData] = useState([]);
@@ -24,72 +23,23 @@ function UserPage() {
 	// useState hook for proper styling
 	const [style, setStyle] = useState({
 		del: { display: "none" },
-		table: { padding: "13px" },
-		tabPos: { left: "25vw" },
 		modal: { display: "none" },
 		effect: "",
 	});
 
 	// useEffect for setting user data and adjusting styling
 	useEffect(() => {
-		if (pageWidth === 768) {
-			axios
-				.get("/exercise/" + user)
-				.then((res) => {
-					setStyle({
-						del: { display: "none" },
-						table: { padding: "13px" },
-						tabPos: { left: "25vw" },
-						modal: { display: "none" },
-						effect: "",
-					});
-					setUserData([...res.data]);
-				})
-				.catch((err) => console.log(err));
-		} else if (pageWidth <= 490 && pageWidth >= 390) {
-			axios
-				.get("/exercise/" + user)
-				.then((res) => {
-					setStyle({
-						del: { display: "none" },
-						table: { padding: "13px" },
-						tabPos: { left: "15vw" },
-						modal: { display: "none" },
-						effect: "",
-					});
-					setUserData([...res.data]);
-				})
-				.catch((err) => console.log(err));
-		} else if (pageWidth <= 380) {
-			axios
-				.get("/exercise/" + user)
-				.then((res) => {
-					setStyle({
-						del: { display: "none" },
-						table: { padding: "13px" },
-						tabPos: { left: "10vw" },
-						modal: { display: "none" },
-						effect: "",
-					});
-					setUserData([...res.data]);
-				})
-				.catch((err) => console.log(err));
-		} else {
-			axios
-				.get("/exercise/" + user)
-				.then((res) => {
-					console.log(res.data);
-					setStyle({
-						del: { display: "none" },
-						table: { padding: "13px" },
-						tabPos: { left: "" },
-						modal: { display: "none" },
-						effect: "",
-					});
-					setUserData([...res.data]);
-				})
-				.catch((err) => console.log(err));
-		}
+		axios
+			.get("/exercise/" + user)
+			.then((res) => {
+				setStyle({
+					del: { display: "none" },
+					modal: { display: "none" },
+					effect: "",
+				});
+				setUserData([...res.data]);
+			})
+			.catch((err) => console.log(err));
 
 		// eslint-disable-next-line
 	}, []);
@@ -102,8 +52,6 @@ function UserPage() {
 					effect: style.effect,
 					modal: { display: "none" },
 					del: style.del,
-					table: style.table,
-					tabPos: style.tabPos,
 				});
 			}, 1000);
 		// eslint-disable-next-line
@@ -115,8 +63,6 @@ function UserPage() {
 			effect: "ld ld-blur-in",
 			modal: { display: "initial" },
 			del: style.del,
-			table: style.table,
-			tabPos: style.tabPos,
 		});
 	};
 
@@ -175,8 +121,6 @@ function UserPage() {
 		setStyle({
 			effect: "ld ld-blur-out",
 			del: style.del,
-			table: style.table,
-			tabPos: style.tabPos,
 		});
 		setExercise({
 			name: exercise.name,
@@ -207,51 +151,16 @@ function UserPage() {
 	// handler for styling user input after deletion
 	const delHandler = () => {
 		if (style.del.display === "none") {
-			if (pageWidth <= 490 && pageWidth >= 401) {
-				setStyle({
-					modal: style.modal,
-					del: { display: "table-cell" },
-					table: { padding: "" },
-					tabPos: { left: "10vw" },
-				});
-			} else if (pageWidth <= 400) {
-				setStyle({
-					modal: style.modal,
-					del: { display: "table-cell" },
-					table: { padding: "" },
-					tabPos: { left: "2vw" },
-				});
-			} else {
-				setStyle({
-					modal: style.modal,
-					del: { display: "table-cell" },
-					table: { padding: "" },
-					tabPos: { left: "" }, // not needed table centers fine
-				});
-			}
+			console.log("bobo");
+			setStyle({
+				modal: style.modal,
+				del: { display: "table-cell" },
+			});
 		} else if (style.del.display !== "none") {
-			if (pageWidth <= 490 && pageWidth >= 390) {
-				setStyle({
-					modal: style.modal,
-					del: { display: "none" },
-					table: { padding: "" },
-					tabPos: { left: "15vw" },
-				});
-			} else if (pageWidth <= 380) {
-				setStyle({
-					modal: style.modal,
-					del: { display: "none" },
-					table: { padding: "" },
-					tabPos: { left: "10vw" },
-				});
-			} else {
-				setStyle({
-					modal: style.modal,
-					del: { display: "none" },
-					tabPos: { left: "" },
-					table: { padding: "13px" },
-				});
-			}
+			setStyle({
+				modal: style.modal,
+				del: { display: "none" },
+			});
 		}
 	};
 
@@ -304,7 +213,7 @@ function UserPage() {
 					</div>
 				</div>
 
-				<table style={style.tabPos}>
+				<table>
 					<thead>
 						<tr>
 							<th>
@@ -327,14 +236,12 @@ function UserPage() {
 					<tbody>
 						{userData.length < 1 ? (
 							<tr>
-								<td style={style.table}>
-									{exercise.description || "Add exercise info"}
-								</td>
-								<td style={style.table}>{exercise.duration || "..."}</td>
-								<td style={style.table}>
+								<td>{"Add exercise info"}</td>
+								<td>{"50"}</td>
+								<td>
 									{exercise.date
 										? dateFormatter(exercise.date.substring(0, 10))
-										: "..."}
+										: "04/04/2021"}
 								</td>
 								<td style={style.del}>
 									<button
@@ -350,11 +257,9 @@ function UserPage() {
 						) : (
 							userData.map((ex, i) => (
 								<tr key={ex.description + i}>
-									<td style={style.table}>{ex.description}</td>
-									<td style={style.table}>{ex.duration}</td>
-									<td style={style.table}>
-										{dateFormatter(ex.date.substring(0, 10))}
-									</td>
+									<td>{ex.description}</td>
+									<td>{ex.duration}</td>
+									<td>{dateFormatter(ex.date.substring(0, 10))}</td>
 									<td style={style.del}>
 										<button onClick={() => onDelete(ex._id, i)} id="delBtn">
 											Delete
