@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import bgImg from "../imgs/bgImg.jpg";
 import Navbar from "./Navbar";
+import { useHistory } from "react-router-dom";
 
 function HomePage() {
 	// useState hook for styling
 	const [style, setStyle] = useState({});
 	const path = window.location.pathname;
+	const history = useHistory();
+
 	// useEffect hook for styling
 	useEffect(() => {
 		if (path === "/") {
@@ -21,6 +24,8 @@ function HomePage() {
 		}
 	}, [path]);
 
+	const redirect = () => history.push("/register");
+
 	return (
 		<>
 			<Navbar />
@@ -30,9 +35,9 @@ function HomePage() {
 					<p>Click start to register or login</p>
 				</div>
 
-				<a href="/register" className="btn">
+				<button href="/register" className="btn" onClick={redirect}>
 					Start
-				</a>
+				</button>
 			</div>
 		</>
 	);

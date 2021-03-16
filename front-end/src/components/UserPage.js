@@ -136,27 +136,25 @@ function UserPage() {
 		axios
 			.delete("/exercise/" + id)
 			.then((res) => {
-				console.log("My");
 				setUserData([...newData]);
 			})
 			.catch((err) => console.log("CCCC" + err));
 	};
 	// Date format function
-	const dateFormatter = (s) => {
-		let b = s.split("-");
+	const dateFormatter = (string) => {
+		let date = string.split("-");
 
-		[b[1], b[2]] = [b[2], b[1]];
-		return b.reverse().join("/");
+		[date[1], date[2]] = [date[2], date[1]];
+		return date.reverse().join("/");
 	};
 	// handler for styling user input after deletion
-	const delHandler = () => {
-		if (style.del.display === "none") {
-			console.log("bobo");
+	const delHandler = (display) => {
+		if (display === "none") {
 			setStyle({
 				modal: style.modal,
 				del: { display: "table-cell" },
 			});
-		} else if (style.del.display !== "none") {
+		} else if (display !== "none") {
 			setStyle({
 				modal: style.modal,
 				del: { display: "none" },
@@ -167,49 +165,44 @@ function UserPage() {
 	// User Page Component
 	return (
 		<>
-			<Navbar />
+			<Navbar prop={{ openModal, delHandler, display: style.del.display }} />
 			<div className="main">
 				<h1>Hi, {exercise.name || "Noraly"}!</h1>
-				<div id="add">
-					<button id="x" onClick={openModal}>
-						Add
-					</button>
-					<button onClick={delHandler}>Delete</button>
-				</div>
 
 				<div className={style.effect} style={style.modal} id="modal">
 					<div id="modal-content">
-						<label>Exercise:</label>
+						<label id="label1">Exercise:</label>
 						<input
 							value={exercise.description}
 							onChange={descriptionHandler}
 							type="text"
 							name="exercise"
 						/>
-						<br />
-						<label>Duration(mins):</label>
+
+						<label id="label2">Duration(mins):</label>
 						<input
 							value={exercise.duration}
 							onChange={durationHandler}
 							type="number"
 							name="duration"
 						/>
-						<br />
-						<label>Date:</label>
+
+						<label id="label3">Date:</label>
 						<input
 							value={exercise.date}
 							onChange={dateHandler}
 							type="date"
 							name="date"
 						/>
-						<br />
-						<button onClick={saveHandler} type="submit">
-							Save
-						</button>
+						<div id="modBtns">
+							<button onClick={saveHandler} type="submit">
+								Save
+							</button>
 
-						<button onClick={closeModal} type="button">
-							Cancel
-						</button>
+							<button onClick={closeModal} type="button">
+								Cancel
+							</button>
+						</div>
 					</div>
 				</div>
 
@@ -224,7 +217,7 @@ function UserPage() {
 								Duration
 								<img className="" alt="timer" src={img2} />
 							</th>
-							<th id="date">
+							<th>
 								Date <img className="" alt="calendar" src={img3} />
 							</th>
 							<th style={style.del}>

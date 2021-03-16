@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function Navbar() {
+function Navbar(props) {
 	// Variable
 	const path = window.location.pathname;
 
@@ -24,12 +24,17 @@ function Navbar() {
 				href: "/",
 			});
 		} else if (path === "/user") {
+			const { prop } = props;
+			const { openModal, delHandler, display } = prop;
 			setStyle({
 				login: { display: "none" },
 				hide: { display: "" },
 				nav: { zIndex: 0 },
 				navBrand: { cursor: "default" },
 				href: "#",
+				open: openModal,
+				del: delHandler,
+				info: display,
 			});
 		} else {
 			setStyle({
@@ -38,7 +43,7 @@ function Navbar() {
 				href: "/",
 			});
 		}
-	}, [path]);
+	}, [path, props]);
 
 	// Navbar Component
 	return (
@@ -48,12 +53,21 @@ function Navbar() {
 					FitTrack
 				</a>
 			</div>
+
 			<a style={style.login} className="nav-item" href="/login">
 				Login
 			</a>
 			<a style={style.hide} className="nav-item" href="/">
 				Log Out
 			</a>
+			<div id="add">
+				<button style={style.hide} onClick={style.open}>
+					Add
+				</button>
+				<button style={style.hide} onClick={() => style.del(style.info)}>
+					Delete
+				</button>
+			</div>
 		</div>
 	);
 }

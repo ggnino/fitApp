@@ -73,7 +73,6 @@ function LoginPage() {
 			axios
 				.post("/login", input)
 				.then((res) => {
-					console.log(res);
 					if (res.data === "Successfully Authenticated!") {
 						setStyle({
 							input: { border: "", boxShadow: "" },
